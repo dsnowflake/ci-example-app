@@ -6,7 +6,7 @@
  */
 function add(a, b) {
   // A simple function to be tested
-  return a + b;
+  return a + b
 }
 //test
 
@@ -15,6 +15,7 @@ module.exports = {
   add,
 
 };
+
 
 
 
