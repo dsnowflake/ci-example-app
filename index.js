@@ -4,9 +4,9 @@
  * @param {number} b The second number.
  * @returns {number} The sum of the two numbers.
  */
-function add(a, b) {
+function add(a, c) {
   // A simple function to be tested
-  return a + b
+  return a + c
 }
 //test
 
@@ -15,6 +15,7 @@ module.exports = {
   add,
 
 };
+
 
 
 
