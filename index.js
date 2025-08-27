@@ -12,9 +12,10 @@ function add(a, c) {
 
 // Export the function for testing
 module.exports = {
-  add,
+  addsafsf,
 
 };
+
 
 
 
