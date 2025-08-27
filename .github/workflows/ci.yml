@@ -1,0 +1,43 @@
+name: CI Pipeline
+
+# This workflow is triggered on pull request events
+on:
+  pull_request:
+    branches:
+      - main # The branch you want to merge into
+
+jobs:
+  build_and_test:
+    # Runs on the latest version of Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checks out your repository's code under $GITHUB_WORKSPACE, so your workflow can access it.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Installs Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # Step 3: Installs the dependencies from package.json
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Runs ESLint to check for code quality issues. The pipeline will fail if any errors are found.
+      - name: Run Linter (ESLint)
+        run: npm run lint
+
+      # Step 5: Runs Prettier to check for formatting issues. The pipeline will fail if any files are not properly formatted.
+      - name: Check Formatting (Prettier)
+        run: npx prettier --check .
+
+      # Step 6: Runs all your Jest tests. The pipeline will fail if any test fails.
+      - name: Run Tests (Jest)
+        run: CI=true npm run test
+
+      # Step 7: Runs the build script. This step ensures the application can be built successfully.
+      - name: Build Application
+        run: npm run build
